@@ -1,65 +1,58 @@
 import React, { useState } from "react";
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel,
-    AccordionItemState
-} from "react-accessible-accordion";
+import { Accordion, Col, Container, Form, Row } from "react-bootstrap";
 import "./styles/styles.css";
-import 'react-accessible-accordion/dist/fancy-example.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function TableRow({ listItem }) {
-    const [checked, setChecked] = useState(Boolean(listItem.defaultValue));
-    const [value, setValue] = useState(listItem.defaultValue);
-    const [isActive, setIsActive] = useState(false);
+    const [checked, setChecked] = useState(Boolean(listItem['defaultValue']));
+    const [value, setValue] = useState(listItem['defaultValue']);
 
     if (listItem.type === 'LIST') {
-        return (<div className="control">
-            <div className="list"><h3>{listItem.caption}</h3>
-                {listItem.items.map((item, index) => {
-                    return (
-                        // <li value={item.value} key={item.key}>
-                        <div>
-                            <Accordion>
-                                <AccordionItem>
-                                    <AccordionItemHeading>
-                                        <AccordionItemButton>
-                                            {item.caption}
-                                        </AccordionItemButton>
-                                    </AccordionItemHeading>
-                                    <AccordionItemPanel>
-                                        <p>
+        return (
+            <Container className="control" style={{ marginLeft: '11px' }}>
+                <Row>
+                    <p>{listItem.caption}:</p>
+                    <Col>
+                        {listItem.items.map((item, index) => {
+                            return (
+                                <Accordion>
+                                    <Accordion.Item eventKey="0" key={listItem.key}>
+                                        <Accordion.Header key={listItem.key}>
+                                            {item.caption.match(/.{1,20}/g)[0]}
+                                        </Accordion.Header>
+                                        <Accordion.Body key={item.value}>
                                             {item.value}
-                                        </p>
-                                    </AccordionItemPanel>
-                                </AccordionItem>
-                            </Accordion>
-                            {/* <button className="accordion" onClick={() => setIsActive(!isActive)}>{item.caption}</button>
-                            {isActive && <div className="panel">{item.value}</div>} */}
-                        </div>
-                        // </li>
-
-                    )
-                })}
-            </div>
-        </div >)
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                </Accordion>
+                            )
+                        })}
+                    </Col>
+                </Row>
+            </Container>
+        )
     }
     if (listItem.type === 'TEXT') {
         return (
-            <div className="control" key={listItem.key}>
-                <label>{listItem.caption}: </label>
-                <input name={listItem.key} id={listItem.key} type='text' value={value} onChange={(e) => { setValue(e.target.value) }} />
-            </div>
+            <Row>
+                <Form.Label column sm={2}>{listItem.caption.match(/.{1,20}/g)[0]}:</Form.Label>
+                <Col className="control" key={listItem.key}>
+                    <Form.Control column sm={10} type="text" id={listItem.key} value={value}
+                        label={listItem.caption + ':'} onChange={(e) => { setValue(e.target.value) }} />
+                </Col>
+            </Row>
         )
     }
     if (listItem.type === 'CHECKBOX') {
         return (
-            <div className="control" key={listItem.key}>
-                <input name={listItem.key} id={listItem.key} type='checkbox' checked={checked} onChange={(e) => { setChecked(!checked) }} />
-                <label>{listItem.caption}</label>
-            </div>
+            <Container>
+                <Row>
+                    <Col className="control" key={listItem.key}>
+                        <Form.Check type="checkbox" id={listItem.key} label={listItem.caption.match(/.{1,20}/g)[0]}
+                            checked={checked ? true : false} onChange={(e) => { setChecked(!checked) }} />
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 

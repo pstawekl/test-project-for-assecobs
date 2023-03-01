@@ -1,19 +1,4 @@
-.col {
-    width: 100%;
-}
-
-.row {
-    width: 30%;
-}
-
-.list li {
-    position: statoc;
-
-    /* width: 10%; */
-}
-
 .control {
-    width: 250px;
-    left: 0;
+    margin-bottom: 5px;
     text-align: left;
 }
