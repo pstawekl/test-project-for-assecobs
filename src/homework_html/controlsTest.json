@@ -1,0 +1,48 @@
+{
+    "controls": [
+        {
+            "type": "TEXT",
+            "caption": "Kontrolka 1",
+            "key": "Ctrl1",
+            "defaultValue": "Wartość Ctrl1"
+        },
+        {
+            "type": "CHECKBOX",
+            "caption": "Kontrolka 2 - checkBox",
+            "key": "Ctrl2",
+            "defaultValue": "true"
+        },
+        {
+            "type": "TEXT",
+            "caption": "Kontrolka 3",
+            "key": "Ctrl3",
+            "defaultValue": "Wartość Ctrl3"
+        },
+        {
+            "type": "LIST",
+            "caption": "Kontrolka 4",
+            "key": "Ctrl4",
+            "defaultValue": "item2",
+            "items": [
+                {
+                    "caption": "Pozycja pierwsza",
+                    "value": "item1"
+                },
+                {
+                    "caption": "Pozycja druga",
+                    "value": "item2"
+                },
+                {
+                    "caption": "Pozycja trzecia",
+                    "value": "item3"
+                }
+            ]
+        },
+        {
+            "type": "TEXT",
+            "caption": "Kontrolka 5",
+            "key": "Ctrl5",
+            "defaultValue": "Wartość Ctrl5"
+        }
+    ]
+}
